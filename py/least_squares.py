@@ -2,7 +2,6 @@
 #Using matplotlib
 #Graph libraries
 from matplotlib import pyplot as plt
-from matplotlib import lines as line
 
 xList = [7, 1, 10, 5, 4, 3, 13, 10, 2]
 yList = [2, 9, 2, 5, 7, 11, 2, 5, 14]
