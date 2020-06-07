@@ -1,4 +1,4 @@
-#Simple worm, create random files, then will reproduce itself into dirs
+#Simple worm, create random files, then will reproduce itself into directories.
 #Run by your responsability
 import shutil
 import sys
