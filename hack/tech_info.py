@@ -1,5 +1,5 @@
-import Wappalyzer._Wappalyzer as Wappalyzer
-import Wappalyzer._WebPage as WebPage
+import Wappalyzer
+import Wappalyzer.WebPage as WebPage
 import argparse
 
 parser = argparse.ArgumentParser()
