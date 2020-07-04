@@ -7,7 +7,7 @@ color('black')
 len_variation = 0.0
 title('Fractal Tree')
 def tree(i):
-    if i < 10:
+    if i < 30:
         pass
     else:
         len_variation = random.uniform(0.5, 0.9)
