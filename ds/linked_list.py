@@ -1,7 +1,12 @@
+from pprint import pprint
+
 class Node:
     def __init__(self, data):
         self.data = data
         self.ref = None
+
+    def __str__(self):
+        return f"Node: {self}, data: {self.data}"
 
 class LinkedList:
     def __init__(self):
@@ -15,6 +20,7 @@ class LinkedList:
             while n is not None:
                 print(f'[{n.data}] --> ', end="")
                 n = n.ref
+            print("")
 
     def add_start(self, data):
         node = Node(data)
@@ -67,9 +73,37 @@ class LinkedList:
                     break
                 else:
                     n = n.ref
-            back = n
+            node.ref = n.ref
             n.ref = node
-            node.ref = back
+            
+    def remove_from_begin(self):
+        if self.head is not None:
+            self.head = self.head.ref
+    
+    def remove_with_value(self, value):
+        if self.head is not None:
+            if self.head.data == value:
+                self.head = self.head.ref
+                return
+            
+            n = self.head
+            while n.ref is not None:
+                if n.ref.data == value:
+                    break
+                else:
+                    n = n.ref
+            n.ref = n.ref.ref
+
+    def pop(self):
+        if self.head is not None:
+            n = self.head
+            while n.ref is not None:
+                if n.ref.ref is None:
+                    last = n.ref
+                    n.ref = None
+                    return last
+                else:
+                    n = n.ref
 
     def clean(self):
         self.head = None
@@ -95,4 +129,15 @@ ll.add_in_position('x', 1)
 ll.add_after(10e6, 'Hello')
 ll.add_before(-10e3, 'x')
 print(f'size of the list: {ll.size()}')
+ll.to_string()
+print("removing first element in list")
+ll.remove_from_begin()
+ll.to_string()
+print("removing last element")
+ll.pop()
+ll.to_string()
+print("removing value")
+ll.remove_with_value("Hello")
+ll.remove_with_value(0)
+ll.remove_with_value(-10e3)
 ll.to_string()
