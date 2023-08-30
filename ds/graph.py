@@ -78,11 +78,50 @@ def build_graph(graph):
     g = graph()
     for v in l:
         g.add_vertex(Vertex(v))
-    g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('a')))
+    
+    g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('a')) )
+    g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('b')) )
+    g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('c')) )
+    g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('d')) )
+    g.add_edge(Edge(g.get_vertex('a'), g.get_vertex('b')) )
+    g.add_edge(Edge(g.get_vertex('a'), g.get_vertex('g')) )
+    g.add_edge(Edge(g.get_vertex('b'), g.get_vertex('c')) )
+    g.add_edge(Edge(g.get_vertex('c'), g.get_vertex('d')) )
+    g.add_edge(Edge(g.get_vertex('c'), g.get_vertex('f')) )
+    g.add_edge(Edge(g.get_vertex('c'), g.get_vertex('i')) )
+    g.add_edge(Edge(g.get_vertex('d'), g.get_vertex('e')) )
+    g.add_edge(Edge(g.get_vertex('d'), g.get_vertex('f')) )
+    g.add_edge(Edge(g.get_vertex('e'), g.get_vertex('x')) )
+    g.add_edge(Edge(g.get_vertex('f'), g.get_vertex('i')) )
     return g
 
-def depth_first_search(graph, src, dst, path):
-    pass
+def depth_first_search(graph, src, dst, path): #busqueda por profundidad
+    path.append(src)
+    if src == dst:
+        return path
+    for v in graph.get_neighbours(src):
+        if v not in path:
+            new_path = depth_first_search(graph, v, dst, path)
+            if new_path is not None:
+                return new_path
+            
+def breath_first_search(graph, src, dst):
+    path = [src]
+    queue = [path]
+    while queue:
+        current_path = queue.pop(0)
+        if current_path[-1] == dst:
+            return current_path
+        for next_vertex in graph.get_neighbours(current_path[-1]):
+            new_path = current_path + [next_vertex]
+            queue.append(new_path)
 
-g1 = build_graph(UndirectedGraph)
-print(g1)
+g = build_graph(UndirectedGraph)
+print(g)
+source = g.get_vertex('s')
+destination = g.get_vertex('x')
+dfs_path = depth_first_search(g, source, destination, [])
+bfs_path = breath_first_search(g, source, destination)
+
+print(f"the way to go from {source.get_name()} to {destination.get_name()} using DFS is {[f'{v.get_name()} ---> ' for v in dfs_path]}")
+print(f"the way to go from {source.get_name()} to {destination.get_name()} usign BFS is {[f'{v.get_name()} ---> ' for v in bfs_path]}")
