@@ -81,5 +81,8 @@ def build_graph(graph):
     g.add_edge(Edge(g.get_vertex('s'), g.get_vertex('a')))
     return g
 
+def depth_first_search(graph, src, dst, path):
+    pass
+
 g1 = build_graph(UndirectedGraph)
 print(g1)
