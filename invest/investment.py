@@ -1,7 +1,7 @@
 def calculate_investment():
     yield_rate = 12.5 # 12.5% annual return
     current_investment = 8137 # initial investment
-    weeks = 26 # 1 year
+    weeks = 26 # 0.5 year
     subscription = 2500 # weekly subscription
     for week in range(weeks):
         week_yield = current_investment * (yield_rate / 100) / 52
